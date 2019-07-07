@@ -11,6 +11,7 @@ mysql> CREATE TABLE jj (num int(10) unsigned NOT NULL, PRIMARY KEY (num));
 mysql> INSERT jj VALUES (0),(1),(2),(3),(4),(5),(6),(7),(8),(9),(10);
 
 ### json object  
+```
 SET @j = '[
     {
         "time": 1561553417713,
@@ -47,6 +48,7 @@ mysql> select * from test.data;
 Let me share an example in MySQL which is supporting a easy to way to convert json array to mysql.  
 [MySQL 8.0]  
 (https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html)  
+
 mysql> SELECT *  
     -> FROM  
     ->   JSON_TABLE(  
@@ -56,7 +58,7 @@ mysql> SELECT *
     ->       yval VARCHAR(100) PATH "$.y"  
     ->     )
     ->   ) AS  jt1;  
-
+```
 +------+------+  
 | xval | yval |   
 +------+------+  
@@ -86,16 +88,16 @@ $ kubectl create secret generic mysql-credential --from-file=./username --from-f
 $ kubectl create -f k8s/mysql-configmap.yaml  
 $ mysql -h [server address] -u root -p  
 
-### initiate
-$ npm init
-$ npm install --save mysql express express-myconnection -f
+### initiate  
+$ npm init  
+$ npm install --save mysql express express-myconnection -f  
 
-$ curl localhost:8080/createDatatable
-$ curl localhost:8080/createJJtable
-$ curl localhost:8080/initializejj
+$ curl localhost:8080/createDatatable  
+$ curl localhost:8080/createJJtable  
+$ curl localhost:8080/initializejj  
 
-### run
-curl localhost:8080/add -H "Content-Type: application/json" -d '{"time":1561553417713,"value":0.3}'
-curl localhost:8080/getdata | python -m json.tool
-curl localhost:8080/add_bulk -H "Content-Type: application/json" -d '[{"time": 1561553417713,"value": 0.2},{"time": 1561553417813,"value": 0.3},{"time": 1561636991563,"value": 0.5}]'
-curl localhost:8080/getdata | python -m json.tool
+### run  
+curl localhost:8080/adddata -H "Content-Type: application/json" -H "Account: kyopark" -H "User: John" -d '{"time":1561553417713,"value":0.3}'  
+curl localhost:8080/getdata -H "Account: kyopark" -H "User: John" | python -m json.tool  
+curl localhost:8080/add_bulk -H "Content-Type: application/json" -H "Account: kyopark" -d '[{"time": 1561553417713,"value": 0.2},{"time": 1561553417813,"value": 0.3},{"time": 1561636991563,"value": 0.5}]'  
+curl localhost:8080/getdata "Account: kyopark" -H "User: John" | python -m json.tool  
