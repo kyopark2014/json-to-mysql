@@ -1,0 +1,25 @@
+{
+  "name": "json-to-mysql",
+  "version": "1.0.0",
+  "description": "It shows how to convert json to mysql.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyopark2014/json-to-mysql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyopark2014/json-to-mysql/issues"
+  },
+  "homepage": "https://github.com/kyopark2014/json-to-mysql#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-myconnection": "^1.0.4",
+    "mysql": "^2.17.1"
+  }
+}
