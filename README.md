@@ -97,7 +97,5 @@ $ curl localhost:8080/createJJtable
 $ curl localhost:8080/initializejj  
 
 ### run  
-curl localhost:8080/adddata -H "Content-Type: application/json" -H "Account: kyopark" -H "User: John" -d '{"time":1561553417713,"value":0.3}'  
-curl localhost:8080/getdata -H "Account: kyopark" -H "User: John" | python -m json.tool  
-curl localhost:8080/add_bulk -H "Content-Type: application/json" -H "Account: kyopark" -d '[{"time": 1561553417713,"value": 0.2},{"time": 1561553417813,"value": 0.3},{"time": 1561636991563,"value": 0.5}]'  
-curl localhost:8080/getdata "Account: kyopark" -H "User: John" | python -m json.tool  
+$ curl localhost:8080/add_bulk -H "Content-Type: application/json" -H "Account: kyopark" -d '[{"time": 1561553417713,"value": 0.2},{"time": 1561553417813,"value": 0.3},{"time": 1561636991563,"value": 0.5}]'  
+$ curl localhost:8080/getdata "Account: kyopark" -H "User: John" | python -m json.tool  
