@@ -26,15 +26,21 @@ SET @j = '[
         "value": 0.5
     }
 ]';
+```
 
 ### create mysql table
+```
 mysql> CREATE TABLE IF NOT EXISTS test.data(num BIGINT AUTO_INCREMENT, time BIGINT, value FLOAT(2.2),PRIMARY KEY(num))
+```
 
 ### extact the values from json and then put in MySQL as bellow.
+```
 mysql> INSERT INTO test.data (time, value) SELECT JSON_EXTRACT(@j,CONCAT('$[', num, '].time')),JSON_EXTRACT(@j,CONCAT('$[', num, '].value')) FROM (SELECT @j AS B) AS A JOIN jj ON num < JSON_LENGTH(@j);
 Query OK, 3 rows affected (0.00 sec)  
 Records: 3  Duplicates: 0  Warnings: 0  
+```
 
+```
 mysql> select * from test.data;
 +-----+---------------+-------+  
 | num | time          | value |  
@@ -44,11 +50,13 @@ mysql> select * from test.data;
 |   3 | 1561636991563 |   0.5 |  
 +-----+---------------+-------+  
 6 rows in set (0.00 sec)  
+```
 
 Let me share an example in MySQL which is supporting a easy to way to convert json array to mysql.  
+
 [MySQL 8.0]  
 (https://dev.mysql.com/doc/refman/8.0/en/json-table-functions.html)  
-
+```
 mysql> SELECT *  
     -> FROM  
     ->   JSON_TABLE(  
@@ -58,7 +66,6 @@ mysql> SELECT *
     ->       yval VARCHAR(100) PATH "$.y"  
     ->     )
     ->   ) AS  jt1;  
-```
 +------+------+  
 | xval | yval |   
 +------+------+  
@@ -66,7 +73,7 @@ mysql> SELECT *
 | 3    | 7    |  
 | 4    | 6    |  
 +------+------+  
-
+```
 # Example
 ### create a cluster based on EKS  
 ```
@@ -96,7 +103,7 @@ $ kubectl create -f k8s/mysql-configmap.yaml
 $ mysql -h [server address] -u root -p  
 ```
 
-### initiate  
+### initiate npm
 ```
 $ npm init  
 $ npm install --save mysql express express-myconnection -f  
