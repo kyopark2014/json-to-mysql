@@ -102,6 +102,12 @@ $ npm init
 $ npm install --save mysql express express-myconnection -f  
 ```
 
+### initiate database
+```
+$ mysql -h $DB_HOME -u root -p < k8s/mysql/sql/mysql-schema.sql
+$ mysql -h $DB_HOME -u root -p < k8s/mysql/sql/mysql-data.sql
+```
+
 ### run  
 ```
 $ curl localhost:8080/add_bulk -H "Content-Type: application/json" -H "Account: kyopark" -d '[{"time": 1561553417713,"value": 0.2},{"time": 1561553417813,"value": 0.3},{"time": 1561636991563,"value": 0.5}]'  
